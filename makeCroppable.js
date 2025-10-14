@@ -4,10 +4,12 @@ function makeCroppable() {
     const image = document.getElementById("croppableImage");
     if (!image) return;
 
+    // Create Croppie container and replace the image
     const croppieContainer = document.createElement("div");
     croppieContainer.id = "upload-demo";
     image.replaceWith(croppieContainer);
 
+    // Initialize Croppie
     croppieInstance = new Croppie(croppieContainer, {
         enableExif: true,
         viewport: { width: 200, height: 200, type: "square" },
@@ -15,7 +17,15 @@ function makeCroppable() {
     });
 
     croppieInstance.bind({ url: image.src });
+
+    return croppieInstance;
 }
 
-export { makeCroppable };
+// Getter to retrieve the current Croppie instance
+function getCroppieInstance() {
+    return croppieInstance;
+}
+
+export { makeCroppable, getCroppieInstance };
+
 
