@@ -8,11 +8,12 @@ import { setupSaveHandler } from "./setupSaveHandler.js";
 createFrame(1);
 
 initializeImageUpload(() => {
-  makeCroppable();      // replaces only the image, keeps button/input
-  addSaveButton();      // ensure button exists
-  addWordInput();       // ensure input exists above button
-  setupSaveHandler();   // now elements exist, attach click handler
+  makeCroppable();
+  addSaveButton();
+  addWordInput();
+  setupSaveHandler(); // attaches handler, keeps growing savedItems
 });
+
 
 
 
