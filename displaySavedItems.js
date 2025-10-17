@@ -5,7 +5,7 @@ function displaySavedItems(savedItems) {
     return;
   }
 
-  // 🔹 Check if a table already exists — if so, remove it (to refresh cleanly)
+  // 🔹 Remove existing table if present (for refresh)
   let existingTable = document.getElementById("savedItemsTable");
   if (existingTable) {
     existingTable.remove();
@@ -14,7 +14,7 @@ function displaySavedItems(savedItems) {
   // 🔹 Wrapper for table content
   const tableWrapper = document.createElement("div");
   tableWrapper.id = "savedItemsTable";
-  tableWrapper.style.marginTop = "30px";
+  tableWrapper.style.marginTop = "20px";
   tableWrapper.style.width = "100%";
   tableWrapper.style.display = "flex";
   tableWrapper.style.justifyContent = "center";
@@ -81,9 +81,42 @@ function displaySavedItems(savedItems) {
   });
 
   tableWrapper.appendChild(table);
-  frameContainer.appendChild(tableWrapper); // 🔹 Append (don’t replace) table
+
+  // 🔹 Ensure table appears BEFORE the frame
+  const frameWrapper = document.getElementById("frameWrapper");
+  if (frameWrapper) {
+    frameContainer.insertBefore(tableWrapper, frameWrapper);
+  } else {
+    frameContainer.appendChild(tableWrapper);
+  }
+
+  // 🔹 Stack table and frame vertically and center them
+  frameContainer.style.display = "flex";
+  frameContainer.style.flexDirection = "column";
+  frameContainer.style.alignItems = "center";
+  frameContainer.style.gap = "10px"; // small space between table and frame
+
+  // 🔹 Resize the frame based on whether items exist
+  const frame = frameContainer.querySelector(".frame");
+  if (frame) {
+    if (savedItems.length > 0) {
+      // Smaller when items exist
+      frame.style.width = "120px";
+      frame.style.height = "120px";
+      frame.style.fontSize = "50px";
+      frame.style.transition = "all 0.3s ease";
+    } else {
+      // Reset to original size when no items
+      frame.style.width = "200px";
+      frame.style.height = "200px";
+      frame.style.fontSize = "70px";
+    }
+  }
 }
 
 export { displaySavedItems };
+
+
+
 
 

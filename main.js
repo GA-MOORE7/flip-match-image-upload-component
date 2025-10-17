@@ -5,13 +5,14 @@ import { addSaveButton } from "./addSaveButton.js";
 import { addWordInput } from "./addWordInput.js";
 import { setupSaveHandler } from "./setupSaveHandler.js";
 
+
 createFrame(1);
 
 initializeImageUpload(() => {
   makeCroppable();
   addSaveButton();
   addWordInput();
-  setupSaveHandler(); // attaches handler, keeps growing savedItems
+  setupSaveHandler(); 
 });
 
 
