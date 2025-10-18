@@ -67,7 +67,7 @@ function addSaveButton() {
   saveButton.addEventListener("mouseup", () => {
     saveButton.style.transform = "translateY(-2px)";
     saveButton.style.boxShadow = "0 6px 14px rgba(37, 99, 235, 0.4)";
-    saveButton.textContent = "Select a new image";
+    saveButton.textContent = "Save Cropped Image + Word";
 });
 
   // --- Click behavior placeholder ---

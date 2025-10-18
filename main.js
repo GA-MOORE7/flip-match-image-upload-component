@@ -4,7 +4,6 @@ import { makeCroppable } from "./makeCroppable.js";
 import { addSaveButton } from "./addSaveButton.js";
 import { addWordInput } from "./addWordInput.js";
 import { setupSaveHandler } from "./setupSaveHandler.js";
-// displaySavedItems will import createActionButton internally
 
 createFrame(1);
 
