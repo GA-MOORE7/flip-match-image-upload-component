@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c5ecf6;
+  background-color: #e7f3fb;
 }
 
 /* Right panel */
@@ -26,19 +26,32 @@
   overflow: hidden;
 }
 
-/* Frame button style */
 .frame {
   height: 200px;
   width: 200px;
-  border: 1px dashed #333;
-  background-color: #f0f0f0;
+  border: 3px dashed #333;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 70px;
-  border-radius: 15px;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
+  
+  /* Pulse animation */
+  animation: pulseBorder 1.5s infinite;
 }
+
+@keyframes pulseBorder {
+  0%, 100% {
+    transform: scale(1);
+    border-color: #333;
+  }
+  50% {
+    transform: scale(1.05);
+    border-color: #555; /* slightly brighter/darker for effect */
+  }
+}
+
 
 .frame:hover {
   background-color: #8bbcc2;

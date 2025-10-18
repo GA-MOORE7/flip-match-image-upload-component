@@ -1,3 +1,5 @@
+import { createActionButton } from "./createActionButton.js";
+
 function displaySavedItems(savedItems) {
   const frameContainer = document.getElementById("frameContainer");
   if (!frameContainer) {
@@ -5,13 +7,11 @@ function displaySavedItems(savedItems) {
     return;
   }
 
-  // 🔹 Remove existing table if present (for refresh)
+  // Remove existing table if present (for refresh)
   let existingTable = document.getElementById("savedItemsTable");
-  if (existingTable) {
-    existingTable.remove();
-  }
+  if (existingTable) existingTable.remove();
 
-  // 🔹 Wrapper for table content
+  // Create wrapper for table
   const tableWrapper = document.createElement("div");
   tableWrapper.id = "savedItemsTable";
   tableWrapper.style.marginTop = "20px";
@@ -19,7 +19,7 @@ function displaySavedItems(savedItems) {
   tableWrapper.style.display = "flex";
   tableWrapper.style.justifyContent = "center";
 
-  // 🔹 Table element
+  // Create table
   const table = document.createElement("table");
   table.style.width = "90%";
   table.style.borderCollapse = "collapse";
@@ -30,7 +30,7 @@ function displaySavedItems(savedItems) {
   table.style.backgroundColor = "#fefefe";
   table.style.fontFamily = "Arial, sans-serif";
 
-  // Header row
+  // Header
   const header = document.createElement("tr");
   ["#", "Word", "Image"].forEach(text => {
     const th = document.createElement("th");
@@ -42,7 +42,7 @@ function displaySavedItems(savedItems) {
   });
   table.appendChild(header);
 
-  // Rows for saved items
+  // Rows
   savedItems.forEach((item, index) => {
     const row = document.createElement("tr");
     row.style.transition = "background-color 0.2s";
@@ -82,36 +82,33 @@ function displaySavedItems(savedItems) {
 
   tableWrapper.appendChild(table);
 
-  // 🔹 Ensure table appears BEFORE the frame
+  // Place table before frame
   const frameWrapper = document.getElementById("frameWrapper");
-  if (frameWrapper) {
-    frameContainer.insertBefore(tableWrapper, frameWrapper);
-  } else {
-    frameContainer.appendChild(tableWrapper);
-  }
+  if (frameWrapper) frameContainer.insertBefore(tableWrapper, frameWrapper);
+  else frameContainer.appendChild(tableWrapper);
 
-  // 🔹 Stack table and frame vertically and center them
+  // Vertical stack alignment
   frameContainer.style.display = "flex";
   frameContainer.style.flexDirection = "column";
   frameContainer.style.alignItems = "center";
-  frameContainer.style.gap = "10px"; // small space between table and frame
+  frameContainer.style.gap = "10px";
 
-  // 🔹 Resize the frame based on whether items exist
+  // Resize frame
   const frame = frameContainer.querySelector(".frame");
   if (frame) {
     if (savedItems.length > 0) {
-      // Smaller when items exist
       frame.style.width = "120px";
       frame.style.height = "120px";
       frame.style.fontSize = "50px";
-      frame.style.transition = "all 0.3s ease";
     } else {
-      // Reset to original size when no items
       frame.style.width = "200px";
       frame.style.height = "200px";
       frame.style.fontSize = "70px";
     }
   }
+
+  // ✅ Automatically trigger button creation
+  createActionButton();
 }
 
 export { displaySavedItems };
